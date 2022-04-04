@@ -48,7 +48,7 @@ public class file {
 
         }
 
-        nonExists = files.stream().filter(file -> !file.exists()).toList();
+        nonExists = files.stream().filter(file -> !file.exists()).collect(toList());
 
         for(File f: nonExists)
         {
@@ -88,24 +88,12 @@ public class file {
         int height = imageFile.getHeight();
         List<Integer> removeColor= Arrays.asList(
                 new Color(74, 186, 230).getRGB(),
-                new Color(239, 239, 239).getRGB(),
-                new Color(240, 244, 240).getRGB(),
-                new Color(250, 247, 250).getRGB(),
-                new Color(230, 231, 230).getRGB(),
                 new Color(123, 202, 222).getRGB(),
-                new Color(239, 243, 239).getRGB(),
-                new Color(241, 242, 241).getRGB(),
-                new Color(247, 245, 247).getRGB(),
-                new Color(250, 250, 250).getRGB(),
-                new Color(247, 247, 247).getRGB(),
-                new Color(251, 253, 251).getRGB(),
-                new Color(248, 248, 248).getRGB(),
-                new Color(250, 247, 250).getRGB(),
-                new Color(248, 244, 248).getRGB(),
-                new Color(107, 113, 165).getRGB()
-
+                new Color(107, 113, 165).getRGB(),
+                new Color(67, 185, 230).getRGB()
 
         );
+        int tmps = new Color(222, 235, 239).getRGB();
         for(int widthX = 0;widthX<width;widthX++)
         {
             for(int heightY =0 ;heightY<height;heightY++)
@@ -118,13 +106,12 @@ public class file {
 //                    System.out.println(imageFile.getRGB(widthX, heightY));
 //                }
                 if(
-                        (240 <= cr.getRed() && cr.getRed() <= 260) &&
-                        (240 <= cr.getGreen() && cr.getGreen() <= 260) &&
-                        (240 <= cr.getBlue() && cr.getBlue() <= 260)
+                        ((225 <= cr.getRed() && cr.getRed() <= 260) &&
+                        (225 <= cr.getGreen() && cr.getGreen() <= 260) &&
+                        (225 <= cr.getBlue() && cr.getBlue() <= 260) )|| tmps == cr.getRGB()
                 )
                 {
                     pointColor = Color.WHITE.getRGB();
-                    System.out.println(imageFile.getRGB(widthX, heightY));
                 }
                 imageFile.setRGB(widthX,heightY,pointColor);
             }
